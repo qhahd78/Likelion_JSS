@@ -2,6 +2,8 @@
 
 <form method="POST" action="">
 {% csrf_token %}
-{{jss_form.as_p}}
+{{jss_form.as_p}} <!--p 태그로 감싸준다 -->
 <input type="submit" value="확인">
 </form>
+
+<!-- form 이 감싸고 있는 데이터를 action="" 에다가 보내줌. action이 없으면 해당 html 에 보냄 .-->

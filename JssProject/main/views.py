@@ -1,16 +1,18 @@
+# views 에서 변수를 지정해서 templates에서 사용할 수 있는 것. 변수는 무조건 views에서 온다. 
+
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import JssForm
-from .models import Jasoseol
-from django.http import Http404
+from .forms import JssForm #같은 위치에 있는 forms에서 JssForm 클래스를 불러온다. 
+from .models import Jasoseol #같은 위치에 있는 models에서 Jasoseol 이라는 모델을 불러온다. 
+from django.http import Http404 
 # Create your views here.
 
-def index(request): 
+def index(request): #request(요청)을 넘겨받아
     all_jss = Jasoseol.objects.all() #all_jss에다가 모든 오브젝트를 넣어 보낸다 .
-    return render(request, 'index.html', {'all_jss':all_jss}) 
+    return render(request, 'index.html', {'all_jss':all_jss}) #render 라는 메소드를 호출한다. request 고정, 연결할 템플릿 경로, 딕셔너리 형태로 템플릿에 넘겨준다. 
 
 
 def create(request): 
-    if request.method == "POST" : 
+    if request.method == "POST" : # post는 정보의 형식을 말한다. (get post할 때 그 post임)
         filled_form = JssForm(request.POST)
         if filled_form.is_valid():
             filled_form.save()

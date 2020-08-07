@@ -4,7 +4,7 @@ from .models import Jasoseol
 class JssForm(forms.ModelForm): #모델폼을 상속 
 
     class Meta: #메타에 2가지 인자 넣음 
-        model = Jasoseol
+        model = Jasoseol #어떤 모델 쓸건지 . Jasoseol 모델을 쓸거다 ! 
         fields = ('title', 'content',)
 
     def __init__(self, *args, **kwargs): #클래스 내의 내장 함수. 

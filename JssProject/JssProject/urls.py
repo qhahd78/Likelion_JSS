@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from main.views import index, create, detail, delete, update
+from main.views import index, create, detail, delete, update #views에서 불러오는 함수들. 
 
 
 urlpatterns = [
+    # url표시, views에서 불러올 함수, 고유 이름 정해주기 
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('create/',create, name='create'),
