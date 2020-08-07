@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자소설 닷컴</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+</head>
+<body>
+    <div class="make_jss">
+        <a href="{% url 'create' %}">
+        <div class="plus_btn">
+            +
+        </div>
+        </a>
+        <p>자기소개서 작성</p>
+    </div>
+
+    {% for jss in all_jss %}
+    <div class="all_jss">
+        <p>{{jss.title}}</p>
+
+        <p>{{jss.content}}</p>
+
+        <p>{{jss.updated_at|date:"Y-m-d"}}</p> <!-- | 하고 어쩌고는 템플릿 필터 -->
+        <!-- 구글에 django template filter 치고 공식 문서 보면 더 많대-->
+    </div>
+
+    {% endfor %}
+</body>
+</html>
+
+
