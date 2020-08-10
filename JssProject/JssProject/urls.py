@@ -21,6 +21,6 @@ from main.views import index, create, detail, delete, update #views에서 불러
 urlpatterns = [
     # url표시, views에서 불러올 함수, 고유 이름 정해주기 
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),
-    path('', include('accounts.urls')),
+    path('', include('main.urls')), #앱 url 통째로 참조. main 앱으로 연결. 
+    path('', include('accounts.urls')), #앱 url 통째로 참조. accounts 앱으로 연결.
 ]

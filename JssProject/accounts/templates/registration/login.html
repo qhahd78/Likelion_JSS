@@ -1,10 +1,10 @@
 <h1>로그인페이지</h1>
 
 
-<form method="POST">
+<form method="POST"> <!-- form 이랑 submit은 세트 라고 생각한다 . --> 
 
 {% csrf_token %}
-{{form}}
+{{form}} <!-- MyLoginView class 에서 form 을 가져온다. -->
 <input type="submit" value="로그인">
 
 </form>
