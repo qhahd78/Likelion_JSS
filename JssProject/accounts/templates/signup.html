@@ -1,0 +1,7 @@
+<h1>회원가입 페이지</h1>
+
+<form method="POST" action="">
+{% csrf_token %}
+{{regi_form.as_p}}
+<input type="submit" value="회원가입">
+</form>
