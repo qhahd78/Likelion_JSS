@@ -9,5 +9,6 @@ class Jasoseol(models.Model):  #자소설 모델 만들기. 모델은 데이터�
     content = models.TextField()
     updated_at = models.DateTimeField(auto_now=True) # 날짜와 시간. 
     author = models. ForeignKey(User, on_delete=models.CASCADE) #자소설이 지워지면, foreign 키도 지워진다 ? ? , null= True : 빈값을 허용한다. (작성자라는 필드가 있지만, 없어도 된다.)
-
+#User 모델의 pk 키를 ForeignKey 로 저장해주고. 이 값을 author에 저장. 
 # makemigrations 왜 두 개 나오는 지 모르겠음 
+#models.CASCADE 뜻은, 모델이 없어지면 객체 값도 다 사라진다. (User 모델이 사라지면, 연결되어있는 자소설도 모두 사라진다. )
