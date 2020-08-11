@@ -42,17 +42,22 @@
         </a>
         <p>자기소개서 작성</p>
     </div>
+    <a href="{% url 'my_index' %}">
+        <button>내 자기소개서만 보기</button>
+    </a>
+    <a href="{% url 'index' %}">
+        <button>모든 자기소개서 보기</button>
+    </a>
+    <br>
 
     {% for jss in all_jss %}
     <a href="{% url 'detail' jss.id %}">
     <div class="all_jss">
-        <p>{{jss.id}}</p>
+        <p>{{jss.author}}</p> <!-- id 대신 author 로 작성자 식별-->
         <p>{{jss.title}}</p>
-
         <p>{{jss.content}}</p>
-
         <p>{{jss.updated_at|date:"Y-m-d"}}</p> <!-- | 하고 어쩌고는 템플릿 필터 -->
-        <!-- 구글에 django template filter 치고 공식 문서 보면 더 많대-->
+
     </div>
     </a>
 
