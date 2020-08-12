@@ -33,7 +33,7 @@ def create(request):
 
     if request.method == "POST": # post는 정보의 형식을 말한다. (get post할 때 그 post임)
         filled_form = JssForm(request.POST)
-        if filled_form.is_valid():
+        if filled_form.is_valid(): #유효성 검사 
             temp_form = filled_form.save(commit=False) #temp fomr에 filled form을 넣어준다. #commit False.는 세이브를 지연, 그 사이에 어떤 행위들을 넣어줄 수 있다 .
             temp_form.author = request.user # 현재 로그인된 유저를 넣어준다. 
             filled_form.save()
