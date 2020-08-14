@@ -19,7 +19,7 @@
 <a href="{% url 'delete' my_jss.id %}"><button>삭제</button></a> <!--delete 라는 함수를 연결시킨다. id도 함께 넘겨준다.  --> 
 {% endif %} <!--수정 삭제 버튼을 보여준다.-->
 
-{% if user.if_authenticated %}
+{% if user.is_authenticated %}
     <form method="POST" action="{% url 'create_comment' my_jss.id %}">
     {% csrf_token %}
     {{comment_form}}  <!--탬플릿 태그로 간단하게 보여주기-->
@@ -30,7 +30,7 @@
 {% for comment in my_jss.comment_set.all %}
 
 <p>
-    {{comment.author}} {{comment.content}}
+    {{comment.author}} 📢 {{comment.content}}
     {% if user == comment.author %}
     <a href="{% url 'delete_comment' my_jss.id comment.id %}">
         <button>삭제</button>

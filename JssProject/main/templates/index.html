@@ -11,7 +11,7 @@
 <body>
 
     <!--로그인 됐을 때는 로그아웃만, 로그아웃 됐을 때는 로그인만 보이게 if 문을 사용.--> 
-    {% if user.if_authenticated %} <!--로그인 됐으면-->
+    {% if user.is_authenticated %} <!--로그인 됐으면-->
     
     <a href= "{% url 'logout' %}">
         <button>로그아웃</button>

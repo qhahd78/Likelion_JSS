@@ -74,7 +74,7 @@ def update(request, jss_id):
     
     return render(request, 'create.html', {'jss_form' : jss_form}) #수정을 누르면 create 창으로 넘어가게 . 
 
-def create_comment(request):
+def create_comment(request, jss_id):
     comment_form = CommentForm(request.POST)
     if comment_form.is_valid():
         temp_form = comment_form.save(commit=False)
