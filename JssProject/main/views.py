@@ -1,8 +1,8 @@
 # views 에서 변수를 지정해서 templates에서 사용할 수 있는 것. 변수는 무조건 views에서 온다. 
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import JssForm #같은 위치에 있는 forms에서 JssForm 클래스를 불러온다. 
-from .models import Jasoseol #같은 위치에 있는 models에서 Jasoseol 이라는 모델을 불러온다. 
+from .forms import JssForm, CommentForm #같은 위치에 있는 forms에서 JssForm 클래스를 불러온다. 
+from .models import Jasoseol, Comment #같은 위치에 있는 models에서 Jasoseol 이라는 모델을 불러온다. 
 from django.http import Http404 
 from django.core.exceptions import PermissionDenied #PermissionDenied 불러오기/ 
 from django.contrib.auth.decorators import login_required
@@ -50,9 +50,9 @@ def detail(request, jss_id) : # 함수내에서 인자로써 id 도 같이 받�
     #    raise Http404
 
     my_jss = get_object_or_404(Jasoseol, pk=jss_id) #모델 쓰고, id 쓰면 됨 
+    Comment_form = CommentForm() #Comment_form 이라는 변수에 CommentForm을 담는다. 폼을 담는다. ! 
     
-    
-    return render (request,'detail.html', {'my_jss': my_jss} )
+    return render (request,'detail.html', {'my_jss': my_jss, 'comment_form': Comment_form})
 
 def delete(request, jss_id) : 
     
@@ -73,3 +73,21 @@ def update(request, jss_id):
             return redirect('index')
     
     return render(request, 'create.html', {'jss_form' : jss_form}) #수정을 누르면 create 창으로 넘어가게 . 
+
+def create_comment(request):
+    comment_form = CommentForm(request.POST)
+    if comment_form.is_valid():
+        temp_form = comment_form.save(commit=False)
+        temp_form.author = request.user
+        temp_form.jasoseol = Jasoseol.objects.get(pk=jss_id)
+        temp_form.save()
+        return redirect('detail', jss_id)
+
+def delete_comment(request, jss_id , comment_id): 
+    my_comment = Comment.objects.get(pk=comment_id)
+    if request.user == my_comment.author: 
+        my_comment.delete()
+        return redirect('detail', jss_id)
+
+    else: 
+        raise PermissionDenied

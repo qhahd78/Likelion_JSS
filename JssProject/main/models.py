@@ -23,3 +23,9 @@ class Jasoseol(models.Model):  #자소설 모델 만들기. 모델은 데이터�
 # SET_DEFAULT: 설정해둔 default 값으로 변경 (default 옵션에 값이 있어야 함)
 # SET(): 지정한 값으로 변경
 # DO_NOTHING: 아무 동작도 하지 않음
+
+class Comment(models.Model):
+    content = models.CharField(max_length=100)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    jasoseol = models.ForeignKey(Jasoseol, on_delete=models.CASCADE)
+    # 위에 자소설 모델이 있어야 인식하고, 외래키로 사용가능 

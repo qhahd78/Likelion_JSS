@@ -1,5 +1,5 @@
 from django import forms #모델폼 불러오기 위해 
-from .models import Jasoseol 
+from .models import Jasoseol, Comment
 
 class JssForm(forms.ModelForm): #모델폼을 상속 
 
@@ -15,3 +15,9 @@ class JssForm(forms.ModelForm): #모델폼을 상속
             'class': 'jss_title', #class=jss_title 랑 placeholder='제목'를 만들어준다. 
             'placeholder': '제목',
         })
+
+class CommentForm(forms.ModelForm):
+
+    class Meta: 
+        model = Comment #폼과 연결될 모델 
+        fields = ('content',)

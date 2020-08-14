@@ -11,7 +11,7 @@
 <body>
 
     <!--로그인 됐을 때는 로그아웃만, 로그아웃 됐을 때는 로그인만 보이게 if 문을 사용.--> 
-    {% if user.is_authenticated %} <!--로그인 됐으면-->
+    {% if user.if_authenticated %} <!--로그인 됐으면-->
     
     <a href= "{% url 'logout' %}">
         <button>로그아웃</button>
@@ -19,7 +19,7 @@
 
     안녕하세요! {{user}}님! <!--로그아웃 하면 annonymousUser로 바뀜 . user는 이미 정해진 변수 -->
 
-    {% else %}<!--로그인 말고 -->
+    {% else %} <!--로그인 말고 -->
 
     <a href= "{% url 'signup' %}">
         <button>회원가입</button>
@@ -42,12 +42,14 @@
         </a>
         <p>자기소개서 작성</p>
     </div>
-    <a href="{% url 'my_index' %}">
+    {% if user.is_authenticated %}
+            <a href="{% url 'my_index' %}">
         <button>내 자기소개서만 보기</button>
-    </a>
-    <a href="{% url 'index' %}">
-        <button>모든 자기소개서 보기</button>
-    </a>
+        </a>
+        <a href="{% url 'index' %}">
+            <button>모든 자기소개서 보기</button>
+        </a>
+    {% endif %}
     <br>
 
     {% for jss in all_jss %}
