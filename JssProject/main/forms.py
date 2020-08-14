@@ -15,6 +15,9 @@ class JssForm(forms.ModelForm): #모델폼을 상속
             'class': 'jss_title', #class=jss_title 랑 placeholder='제목'를 만들어준다. 
             'placeholder': '제목',
         })
+        self.fields['content'].widget.attrs.update({ # 바꾸는 거 x, 추가를 해주는 것이다. 
+            'class': 'jss_content_form', 
+        })
 
 class CommentForm(forms.ModelForm):
 
