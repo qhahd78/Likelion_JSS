@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')), #앱 url 통째로 참조. main 앱으로 연결. 
     path('', include('accounts.urls')), #앱 url 통째로 참조. accounts 앱으로 연결.
+
+    
 ]

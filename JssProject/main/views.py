@@ -6,11 +6,15 @@ from .models import Jasoseol, Comment #같은 위치에 있는 models에서 Jaso
 from django.http import Http404 
 from django.core.exceptions import PermissionDenied #PermissionDenied 불러오기/ 
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 # Create your views here.
 
 def index(request): #request(요청)을 넘겨받아
     all_jss = Jasoseol.objects.all() #all_jss에다가 모든 오브젝트를 넣어 보낸다 .
-    return render(request, 'index.html', {'all_jss':all_jss}) #render 라는 메소드를 호출한다. request 고정, 연결할 템플릿 경로, 딕셔너리 형태로 템플릿에 넘겨준다. 
+    paginator= Paginator(all_jss, 5) # 전체에서 5개를 한 페이지로 자르기
+    page = request.GET.get('page')
+    jss_page = paginator.get_page(page)
+    return render(request, 'index.html', {'all_jss':jss_page}) #render 라는 메소드를 호출한다. request 고정, 연결할 템플릿 경로, 딕셔너리 형태로 템플릿에 넘겨준다. 
 
 def my_index(request) : 
     my_jss = Jasoseol.objects.filter(author=request.user) #오브젝트들 중에서, author 에서 현재 로그인된 유저가 들어있는 오브젝트만 가져오겠다. ??

@@ -1,4 +1,6 @@
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>자소설 닷컴</title>
   <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  
 </head>
 <body>
 
@@ -27,6 +31,10 @@
 
     <a href= "{% url 'login' %}">
         <button>로그인</button>
+    </a>
+
+    <a href="{% provider_login_url 'google' %}">
+        <button>구글로 로그인</button>
     </a>
 
     {% endif %}
@@ -64,6 +72,39 @@
     </a>
 
     {% endfor %}
+
+{% comment %} <a href="?page=1">First</a>
+<a href="?page={{ all_jss.previous_page_number }}">Previous</a>
+
+<span>{{ all_jss.number }} of {{ all_jss.paginator.num_pages }}</span>
+
+<a href="?page={{ all_jss.next_page_number }}">Next</a>
+<a href="?page={{ all_jss.paginator.num_pages }}">Last</a> {% endcomment %}
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% if all_jss.has_previous %}
+    <li class="page-item">
+    <a class="page-link" href="?page=1" tableindex="-1" aria-disabled="ture">First</a></li>
+    <li class="page-item"><a class="page-link" href="?page={{ all_jss.previous_page_number }}">Previous</a></li>
+    {% endif %}
+
+    <li class="page-item"><a class="page-link" href="">1</a></li>
+
+    {% if all_jss.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ all_jss.next_page_number }}">Next</a></li>
+    <li class="page-item"><a class="page-link" href="?page={{ all_jss.paginator.num_pages}}">La
+    st</a></li>
+    {% endif %}
+
+  </ul>
+</nav>
+    
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
 </body>
 </html>
 
