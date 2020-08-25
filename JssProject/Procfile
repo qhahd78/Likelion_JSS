@@ -1,0 +1,1 @@
+web: gunicorn JssProject.wsgi --log-file -
