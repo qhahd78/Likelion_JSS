@@ -9,12 +9,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path # 뭐냐이건
 import os
-
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500) DATABASES['default'].update(db_from_env)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -24,13 +21,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = '!3&53z32-thsd7+7l3makb=+2#3s_796z18u77w$5%%m!v2!!&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', False))
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -146,3 +142,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 1
+
+db_from_env = dj_database_url.config(conn_max_age=500) 
+DATABASES['default'].update(db_from_env)
